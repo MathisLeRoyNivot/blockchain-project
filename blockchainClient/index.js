@@ -3,6 +3,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
+const index = require("./server/routes/route");
+const user = require("./server/routes/user");
+const block = require("./server/routes/block");
+var pg = require("pg");
+const io = require("socket.io");
+var connectionString = "pg://postgres:persival99@localhost:5432/blockchain";
+var client = new pg.Client(connectionString);
+client.connect();
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
@@ -15,9 +23,12 @@ app.use(
 //set the view engine
 app.set("view engine", "ejs");
 
-app.get("/", function(req, res) {
-  res.render("index", { title: "Hey", message: "Hello there!" });
-});
+app.use("/", index);
+/* 
+app.use('/', user);
+app.use('/', block);
+
+*/
 
 //APP.POST POUR RECUP LE CHANGEMENT DE CARTE
 app.listen(8080, function() {
