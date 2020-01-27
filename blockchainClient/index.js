@@ -20,7 +20,6 @@ app.get("/", function (req, res) {
 
 //APP.POST POUR RECUP LE CHANGEMENT DE CARTE
 app.listen(8080, function () {
-    console.log("Example app listening on port 8080!"
-        s);
+    console.log("Example app listening on port 8080!");
 
 });
