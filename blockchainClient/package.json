@@ -1,0 +1,19 @@
+{
+  "name": "anguis",
+  "version": "1.0.0",
+  "description": "Blockchain sur les livres de montpassant",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathisLeRoyNivot/blockchain-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MathisLeRoyNivot/blockchain-project/issues"
+  },
+  "homepage": "https://github.com/MathisLeRoyNivot/blockchain-project#readme"
+}
