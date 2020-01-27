@@ -12,6 +12,8 @@ var connectionString = "pg://postgres:persival99@localhost:5432/blockchain";
 var client = new pg.Client(connectionString);
 client.connect();
 
+client.query("SELECT * From block", (err, res) => {});
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
