@@ -10,6 +10,7 @@ pdf_file_page_number = int(input("Page no. ?\n"))
 
 pdf_file = open(pdf_file_path, 'rb')
 pages_list_selected = list()
+transactions = list()
 pages_range = list()
 
 
@@ -27,9 +28,10 @@ def get_page_content(file, page_num):
 
 def hash_page_content(file, page_num):
     page_content = get_page_content(file, page_num)
-    hash_content = sha256(bytes(page_content, "utf8")).hexdigest()
+    hashed_content = sha256(bytes(page_content, "utf8")).hexdigest()
+    transactions.append(hashed_content)
     print("Page # : " + str(page_num))
-    print("Content hash : " + hash_content)
+    print("Content hash : " + hashed_content)
     print("Content preview : " + page_content[0:100] + "...")
 
 
@@ -45,8 +47,23 @@ def pages_treatment(file, page):
         print("Error !")
 
 
-# Select only requested pages
-pages_treatment(pdf_file_path, pdf_file_page_number)
+def new_block():
+    # New block algorithm
+    print("New block")
+
+
+def add_block_to_blockchain():
+    # Add block to the blockchain
+    print("Add")
+
+
+def main():
+    # Select only requested pages
+    pages_treatment(pdf_file_path, pdf_file_page_number)
+    print(transactions)
+
+
+main()
 
 # Close opened file
 pdf_file.close()
