@@ -1,6 +1,7 @@
 CREATE TABLE "users" (
   "id" SERIAL PRIMARY KEY,
-  "full_name" varchar,
+  "name" varchar,
+  "first-name" varchar,
   "created_at" timestamp
 );
 
