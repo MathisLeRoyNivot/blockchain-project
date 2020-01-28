@@ -1,16 +1,16 @@
 const Block = require('./block');
 
-const actions = require('../constants');
+const actions = require('../socket/constant');
 
 const {
     generateProof,
     isProofValid
-} = require('../utils/proof');
+} = require('./pow');
 
 class Blockchain {
     constructor(blocks, io) {
         this.blocks = blocks || [new Block(0, 1, 0, [])];
-        this.currentTransactions = [];
+        this.currentPages = [];
         this.nodes = []; //noeud
         this.io = io;
     }
@@ -31,13 +31,13 @@ class Blockchain {
             console.info('Starting mining block...');
             const previousBlock = this.lastBlock();
             process.env.BREAK = false;
-            const block = new Block(previousBlock.getIndex() + 1, previousBlock.hashValue(), previousBlock.getProof(), this.currentTransactions);
+            const block = new Block(previousBlock.getIndex() + 1, previousBlock.hashValue(), previousBlock.getProof(), this.currentPages);
             const {
                 proof,
                 dontMine
             } = await generateProof(previousBlock.getProof());
             block.setProof(proof);
-            this.currentTransactions = [];
+            this.currentPages = [];
             if (dontMine !== 'true') {
                 this.mineBlock(block);
             }
@@ -69,8 +69,22 @@ class Blockchain {
         }
         return true;
     }
+    parseChain(blocks) {
+        this.blocks = blocks.map(block => {
+            const parsedBlock = new Block(0);
+            parsedBlock.parseBlock(block);
+            return parsedBlock;
+        });
+    }
 
-    /* Stringify and Parsing functions */
+    toArray() {
+        return this.blocks.map(block => block.getDetails());
+    }
+    printBlocks() {
+        this.blocks.forEach(block => console.log(block));
+    }
+
+
 }
 
 module.exports = Blockchain;
