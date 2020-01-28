@@ -1,0 +1,2 @@
+{"sender" : "Cu3F_dxefzw4BygWAAAB", "receiver" :"nLbAE3RXCcZMF5sWAAAB", data="test de block", "timestamp": "1580232083964" }
+{ "host": "localhost", "port": "3002"}
