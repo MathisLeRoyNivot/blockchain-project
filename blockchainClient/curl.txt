@@ -1,0 +1,1 @@
+curl -H "Content-type:application/json" --data '{"sender" : "0JqtJnc9UKsQK40IAAAA", "receiver" :"dZD8Z-2R2hGVVXZbAAAA", data="test de block", "timestamp": "1580203523824" }' http://localhost:3001/pages

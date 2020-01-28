@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/MathisLeRoyNivot/blockchain-project#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.2",
     "pg": "^7.17.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "yargs": "^15.1.0"
   }
 }

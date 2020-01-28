@@ -1,11 +1,11 @@
 const Block = require('./block');
 
-const actions = require('../constants');
+const actions = require('../socket/constant');
 
 const {
     generateProof,
     isProofValid
-} = require('../utils/proof');
+} = require('./pow');
 
 class Blockchain {
     constructor(blocks, io) {

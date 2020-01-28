@@ -6,5 +6,10 @@ router.get("/", function (req, res) {
         message: "Hello there!"
     });
 });
-
+router.get("/te", function (req, res) {
+    res.render("index", {
+        title: "test",
+        message: "Hello there!"
+    });
+});
 module.exports = router;
