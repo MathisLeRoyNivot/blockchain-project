@@ -13,8 +13,6 @@ var client = new pg.Client(connectionString);
 client.connect();
 var cors = require("cors");
 
-client.query("SELECT * From block", (err, res) => {});
-
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(
