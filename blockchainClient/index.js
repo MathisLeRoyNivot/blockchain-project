@@ -8,11 +8,15 @@ const argv = require("yargs").argv;
 
 const Blockchain = require("./server/js/model/chain_model");
 const socketListeners = require("./server/js/socket/socket");
+
+//socket.io
+const client = require("socket.io-client");
+const io = require("socket.io")(httpServer);
+
 //routes
 const pages = require("./server/routes/pages");
 const index = require("./server/routes/route");
 const user = require("./server/routes/user");
-const block = require("./server/routes/block");
 
 //db postgresql
 var pg = require("pg");
@@ -23,14 +27,12 @@ clientpg.connect();
 //PORT
 const PORT = argv.port;
 
-//socket.io
-const client = require("socket.io-client");
-const io = require("socket.io")(httpServer);
+
 
 //setup block chain
 const blockChain = new Blockchain(null, io);
-/* require("./server/routes/block"). */
 
+/* require("./server/routes/block"). */
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
@@ -42,8 +44,43 @@ app.use(
 
 //use router
 app.use("/", index);
-app.use("/", block);
 app.use("/", pages);
+
+app.post("/nodes", (req, res) => {
+  const {
+    host,
+    port
+  } = req.body;
+  const {
+    callback
+  } = req.query;
+  const node = `http://${host}:${port}`;
+  const socketNode = socketListeners(client(node), blockChain);
+  blockChain.addNode(socketNode, blockChain);
+  if (callback === "true") {
+    console.info(`Added node ${node} back`);
+    res
+      .json({
+        status: "Added node Back"
+      })
+      .end();
+  } else {
+    axios.post(`${node}/nodes?callback=true`, {
+      host: req.hostname,
+      port: PORT
+    });
+    console.info(`Added node ${node}`);
+    res
+      .json({
+        status: "Added node"
+      })
+      .end();
+  }
+});
+
+app.get("/chain", (req, res) => {
+  res.json(blockChain.blocks).end();
+});
 
 //set the view engine
 app.set("view engine", "ejs");

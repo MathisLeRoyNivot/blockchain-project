@@ -9,8 +9,8 @@ const {
 
 class Blockchain {
     constructor(blocks, io) {
-        this.blocks = blocks || [new Block(0, 1, 0, [])];
-        this.currentTransactions = [];
+        this.blocks = [blocks || new Block(0, 1, 0, [])];
+        this.currentPages = [];
         this.nodes = []; //noeud
         this.io = io;
     }

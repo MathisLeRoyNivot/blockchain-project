@@ -4,7 +4,7 @@ const Pages = require('../model/pages');
 const Blockchain = require('../model/chain_model');
 
 const socketListeners = (socket, chain) => {
-    socket.on(SocketActions.ADD_Pages, (sender, receiver, data) => {
+    socket.on(SocketActions.ADD_PAGES, (sender, receiver, data) => {
         const pages = new Pages(sender, receiver, data);
         chain.newPages(pages);
         console.info(`Added transaction: ${JSON.stringify(pages.getDetails(), null, '\t')}`);
