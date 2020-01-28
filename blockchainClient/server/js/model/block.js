@@ -10,6 +10,22 @@ class Block {
         this.pages = pages;
         this.timestamp = Date.now();
     }
+    getDetails() {
+        const {
+            index,
+            proof,
+            previousBlockHash,
+            pages,
+            timestamp
+        } = this;
+        return {
+            index,
+            proof,
+            timestamp,
+            previousBlockHash,
+            pages: pages.map(page => page.getDetails()),
+        };
+    }
 
     hashValue() {
         const {
@@ -39,7 +55,22 @@ class Block {
     getPreviousBlockHash() {
         return this.previousBlockHash;
     }
+    parseBlock(block) {
+        this.index = block.index;
+        this.proof = block.proof;
+        this.previousBlockHash = block.previousBlockHash;
+        this.timestamp = block.timestamp;
+        this.pages = block.pages.map(pages => {
+            const parsedPages = new Pages();
+            parsedPages.parsedPages(pages);
+            return parsedPages;
+        });
+    }
 
+
+    printpages() {
+        this.pages.forEach(pages => console.log(pages));
+    }
     /* Stringify and Parsing functions */
 }
 

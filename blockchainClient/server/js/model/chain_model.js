@@ -37,7 +37,7 @@ class Blockchain {
                 dontMine
             } = await generateProof(previousBlock.getProof());
             block.setProof(proof);
-            this.currentTransactions = [];
+            this.currentPages = [];
             if (dontMine !== 'true') {
                 this.mineBlock(block);
             }
@@ -69,8 +69,22 @@ class Blockchain {
         }
         return true;
     }
+    parseChain(blocks) {
+        this.blocks = blocks.map(block => {
+            const parsedBlock = new Block(0);
+            parsedBlock.parseBlock(block);
+            return parsedBlock;
+        });
+    }
 
-    /* Stringify and Parsing functions */
+    toArray() {
+        return this.blocks.map(block => block.getDetails());
+    }
+    printBlocks() {
+        this.blocks.forEach(block => console.log(block));
+    }
+
+
 }
 
 module.exports = Blockchain;
