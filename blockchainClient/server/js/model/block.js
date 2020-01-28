@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const pages = require('./pages');
+const Pages = require('./pages');
 
 class Block {
     constructor(index, previousBlockHash, previousProof, pages) {
@@ -62,7 +62,7 @@ class Block {
         this.timestamp = block.timestamp;
         this.pages = block.pages.map(pages => {
             const parsedPages = new Pages();
-            parsedPages.parsedPages(pages);
+            parsedPages.parsePages(pages);
             return parsedPages;
         });
     }

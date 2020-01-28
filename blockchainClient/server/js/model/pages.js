@@ -20,11 +20,11 @@ class Pages {
         };
     }
 
-    parsePages(pages) {
-        this.sender = pages.sender;
-        this.receiver = pages.receiver;
-        this.data = pages.data;
-        this.timestamp = pages.timestamp;
+    parsePages(page) {
+        this.sender = page.sender;
+        this.receiver = page.receiver;
+        this.data = page.data;
+        this.timestamp = page.timestamp;
     }
     /* Stringfying and Parser functions */
 }

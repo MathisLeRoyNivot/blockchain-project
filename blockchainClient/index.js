@@ -63,8 +63,7 @@ app.post("/nodes", (req, res) => {
   blockChain.addNode(socketNode, blockChain);
   if (callback === "true") {
     console.info(`Added node ${node} back`);
-    res
-      .json({
+    res.json({
         status: "Added node Back"
       })
       .end();
@@ -76,14 +75,14 @@ app.post("/nodes", (req, res) => {
     console.info(`Added node ${node}`);
     res
       .json({
-        status: "Added node"
+        status: 'Added node'
       })
       .end();
   }
 });
 
 app.get("/chain", (req, res) => {
-  res.json(blockChain.blocks).end();
+  res.json(blockChain.toArray()).end();
 });
 
 //pages

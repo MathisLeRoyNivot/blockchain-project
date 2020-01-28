@@ -9,7 +9,7 @@ const {
 
 class Blockchain {
     constructor(blocks, io) {
-        this.blocks = [blocks || new Block(0, 1, 0, [])];
+        this.blocks = blocks || [new Block(0, 1, 0, [])];
         this.currentPages = [];
         this.nodes = []; //noeud
         this.io = io;
@@ -31,7 +31,7 @@ class Blockchain {
             console.info('Starting mining block...');
             const previousBlock = this.lastBlock();
             process.env.BREAK = false;
-            const block = new Block(previousBlock.getIndex() + 1, previousBlock.hashValue(), previousBlock.getProof(), this.currentTransactions);
+            const block = new Block(previousBlock.getIndex() + 1, previousBlock.hashValue(), previousBlock.getProof(), this.currentPages);
             const {
                 proof,
                 dontMine
