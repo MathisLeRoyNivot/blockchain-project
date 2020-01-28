@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const pages = require('./pages');
+const Pages = require('./pages');
 
 class Block {
     constructor(index, previousBlockHash, previousProof, pages) {
@@ -9,6 +9,22 @@ class Block {
         this.previousBlockHash = previousBlockHash;
         this.pages = pages;
         this.timestamp = Date.now();
+    }
+    getDetails() {
+        const {
+            index,
+            proof,
+            previousBlockHash,
+            pages,
+            timestamp
+        } = this;
+        return {
+            index,
+            proof,
+            timestamp,
+            previousBlockHash,
+            pages: pages.map(page => page.getDetails()),
+        };
     }
 
     hashValue() {
@@ -39,7 +55,22 @@ class Block {
     getPreviousBlockHash() {
         return this.previousBlockHash;
     }
+    parseBlock(block) {
+        this.index = block.index;
+        this.proof = block.proof;
+        this.previousBlockHash = block.previousBlockHash;
+        this.timestamp = block.timestamp;
+        this.pages = block.pages.map(pages => {
+            const parsedPages = new Pages();
+            parsedPages.parsePages(pages);
+            return parsedPages;
+        });
+    }
 
+
+    printpages() {
+        this.pages.forEach(pages => console.log(pages));
+    }
     /* Stringify and Parsing functions */
 }
 
