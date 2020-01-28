@@ -5,28 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anguis</title>
-    <link rel="stylesheet" href="CSS/index.css"/>
+    <title>Connexion - Anguis</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css"/>
 </head>
 
 <body>
-    <form action="/accueil" method="POST">
-      <div>
-        <h1>Connectez-vous</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h3 class="login-heading mb-4">Connectez-vous</h3>
+                <form action="/accueil" method="POST">
+                  <div class="form-label-group mb-2">
+                    <input id="name" name="user_name" type="text" class="form-control" placeholder="Nom" required autofocus>
+                  </div>
+                  <div class="form-label-group mb-4">
+                    <input type="text" id="first-name" name="user_fist_name"  class="form-control" placeholder="Prénom" required>
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Connexion</button>
+                </form>
+          </div>
+        </div>
       </div>
-      <div>
-          <label for="username">Identifiants </label>
-          <input type="text" id="name" name="user_name">
-        </div>
-        <div>
-          <label for="password">Mot de passe </label>
-          <input type="text" id="password" name="user_password"></textarea>
-        </div>
-        <div class="button">
-          <button type="submit">Connexion</button>
-        </div>
-      </form>
+    </div>
+  </div>
+
 </body>
-
-
 </html>
