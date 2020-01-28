@@ -24,6 +24,7 @@ const user = require("./server/routes/user");
 //db postgresql
 var pg = require("pg");
 var connectionString = "pg://postgres:persival99@localhost:5432/blockchain";
+<<<<<<< HEAD
 var clientpg = new pg.Client(connectionString);
 clientpg.connect();
 
@@ -34,6 +35,11 @@ const PORT = argv.port;
 const blockChain = new Blockchain(null, io);
 
 /* require("./server/routes/block"). */
+=======
+var client = new pg.Client(connectionString);
+client.connect();
+var cors = require("cors");
+>>>>>>> 14b9905df02a089496b93b0cbc181ee9057b973b
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
@@ -108,7 +114,6 @@ io.on("connection", socket => {
 /* 
 app.use('/', user);
 app.use('/', block);
-
 */
 
 blockChain.addNode(
