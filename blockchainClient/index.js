@@ -11,6 +11,7 @@ const io = require("socket.io");
 var connectionString = "pg://postgres:persival99@localhost:5432/blockchain";
 var client = new pg.Client(connectionString);
 client.connect();
+var cors = require("cors");
 
 client.query("SELECT * From block", (err, res) => {});
 
@@ -26,10 +27,12 @@ app.use(
 app.set("view engine", "ejs");
 
 app.use("/", index);
+app.use(cors());
+app.use(express.json());
+
 /* 
 app.use('/', user);
 app.use('/', block);
-
 */
 
 //APP.POST POUR RECUP LE CHANGEMENT DE CARTE
