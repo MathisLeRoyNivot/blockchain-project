@@ -133,14 +133,6 @@ def mine():
     last_proof = last_block['proof']
     proof = blockchain.proof_of_work(last_proof)
 
-    # We must receive a reward for finding the proof.
-    # The sender is "0" to signify that this node has mined a new coin.
-    #blockchain.new_transaction(
-    #    sender="0",
-    #    recipient=node_unique_identifier,
-    #    pages=0,
-    #)
-
     # Forge the new Block by adding it to the blockchain
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
@@ -159,7 +151,7 @@ def mine():
 def new_transaction():
     values = request.get_json()
 
-    # Check that the required fields are in the POST'ed data
+    # Check required fields
     required = ['sender', 'recipient', 'pages']
     if not all(k in values for k in required):
         return 'Missing values', 400
