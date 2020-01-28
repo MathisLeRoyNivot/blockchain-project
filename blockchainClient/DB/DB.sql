@@ -19,11 +19,11 @@ CREATE TABLE "pages" (
   "pages_code" varchar,
   "hash_code" varchar,
   "previous_hash_code" varchar,
-  "block_id" varchar
+  "block_id" int
 );
 
 CREATE TABLE "chaine" (
-  "block_id" varchar,
+  "block_id" int,
   "user_id" int
 );
 
