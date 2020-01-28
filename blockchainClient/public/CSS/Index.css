@@ -6,7 +6,7 @@ H1{
   border-radius: 1em;
   width: 120px;
 }
-   form {
+   h2 form{
      /*centrer le formulaire sur la page */
      margin: 0 auto;
      width: 400px;
@@ -30,7 +30,4 @@ H1{
    form div + div {
      margin-top: 1em;
    }
-   button{
-     margin-left: 150px;
-     width: 100px;
-   }
+
