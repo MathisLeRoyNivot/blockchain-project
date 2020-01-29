@@ -1,0 +1,31 @@
+.header-livre {
+    background-color: #f4f7f6;
+    padding: 0;
+    position: relative;
+    border-radius: 0 0 0 15em;
+    height: 60px;
+}
+.wider .grid {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+.nav-li{
+    display: inline-block;
+    margin: 0;
+    color: #7289da;
+    height: 60px;
+}
+.dropdownContainer {
+    position: relative;
+    margin-top: 15px;
+    margin-left: 25px;
+}
+.nav-ul-livre    {
+    list-style: none;
+    float: right;
+    margin: 0;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
