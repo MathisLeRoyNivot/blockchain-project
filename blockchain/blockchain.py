@@ -7,6 +7,7 @@ from uuid import uuid4
 from PyPDF2 import PdfFileReader
 from flask import Flask, jsonify, request
 from urllib.parse import urlparse
+import requests
 
 FILE_PATH = "assets/Maupassant_Bel_Ami.pdf"
 PAGE_ITERATION = 5
@@ -131,7 +132,7 @@ class Blockchain(object):
 
         # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
-            response = request.get(f'http://{node}/chain')
+            response = requests.get(f'http://{node}/chain')
 
             if response.status_code == 200:
                 length = response.json()['length']
